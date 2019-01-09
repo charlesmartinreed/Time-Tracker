@@ -23,7 +23,7 @@
                         <label width="133" alignment="center" verticalAlignment="center" textAlignment="center" numberOfLines="2" minimumScaleFactor="0.80000000000000004" id="dF2-jq-BP8">
                             <string key="text">Today
 3hr 45m</string>
-                            <fontDescription key="font" type="system" pointSize="37"/>
+                            <fontDescription key="font" type="system" pointSize="32"/>
                         </label>
                     </items>
                     <menu key="menu" id="AdB-UX-VEk">

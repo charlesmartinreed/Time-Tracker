@@ -91,11 +91,55 @@ class InterfaceController: WKInterfaceController {
     
     fileprivate func updateUI() {
         
+        //update the current time
+        if clockedIn {
+            topLabel.setHidden(false)
+            topLabel.setText("Today: 3h 45m")
+            
+            //middle label
+            //get current clock in date
+            if let clockedInDate = UserDefaults.standard.value(forKey: "clockedIn") as? Date {
+                //convert to time interval
+                let timeInterval = Int(Date().timeIntervalSince(clockedInDate))
+                
+                let hours = timeInterval / 3600 //60 secs * 60 minutes, we're dealing with seconds via our Int
+                let minutes = (timeInterval % 3600) / 60
+                let seconds = timeInterval % 60
+                
+                var currentClockedInString = ""
+                
+                if hours != 0 {
+                  currentClockedInString.append("\(hours)h ")
+                }
+                
+                if minutes != 0 || hours != 0 {
+                    currentClockedInString.append("\(minutes)m ")
+                }
+                
+                currentClockedInString.append("\(seconds)s ")
+                
+                middleLabel.setText(currentClockedInString)
+            }
+            
+            clockInOutButton.setTitle("Clock-Out")
+            clockInOutButton.setBackgroundColor(.red)
+        } else {
+            topLabel.setHidden(true)
+            
+            //middle label
+            middleLabel.setText("Today: \n3h 44m")
+            
+            clockInOutButton.setTitle("Clock-In")
+            clockInOutButton.setBackgroundColor(.green)
+        }
+        
+        
     }
     
     func startTimer() {
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { (timer) in
             // Update various labels
+            self.updateUI()
         }
         
     }
