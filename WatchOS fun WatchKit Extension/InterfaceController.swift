@@ -187,7 +187,15 @@ class InterfaceController: WKInterfaceController {
     }
     
     @IBAction func resetAllTapped() {
-    
+        //set everything in UserDefaults back to 0
+        UserDefaults.standard.set(nil, forKey: "clockedIn")
+        UserDefaults.standard.set(nil, forKey: "clockInLog")
+        UserDefaults.standard.set(nil, forKey: "clockOutLog")
+        
+        clockedIn = false
+        
+        //update the UI to reflect the changes
+        updateUI()
     }
     
     
