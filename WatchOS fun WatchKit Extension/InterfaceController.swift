@@ -53,14 +53,14 @@ class InterfaceController: WKInterfaceController {
         updateUI()
     }
     
-    fileprivate func clockIn() {
+    func clockIn() {
         
-        UserDefaults.standard.set(Date(), forKey: "clockedIn")
+        UserDefaults.standard.set(Date(timeIntervalSinceNow: -5000), forKey: "clockedIn")
         UserDefaults.standard.synchronize()
         startTimer()
     }
     
-    fileprivate func clockOut() {
+    func clockOut() {
         //reset the timer
         timer?.invalidate()
         timer = nil
@@ -70,7 +70,7 @@ class InterfaceController: WKInterfaceController {
             if var clockInLog = UserDefaults.standard.array(forKey: "clockInLog") as? [Date] {
                 //if there's an array of values
                 clockInLog.insert(clockedInDate, at: 0)
-                UserDefaults.standard.set([clockInLog], forKey: "clockInLog")
+                UserDefaults.standard.set(clockInLog, forKey: "clockInLog")
             } else {
                 //only when there's no array
                 UserDefaults.standard.set([clockedInDate], forKey: "clockInLog")
@@ -79,7 +79,7 @@ class InterfaceController: WKInterfaceController {
             if var clockOutLog = UserDefaults.standard.array(forKey: "clockOutLog") as? [Date] {
                 //if there's an array of values, insert the current time into UserDefaults
                 clockOutLog.insert(Date(), at: 0)
-                UserDefaults.standard.set([clockOutLog], forKey: "clockOutLog")
+                UserDefaults.standard.set(clockOutLog, forKey: "clockOutLog")
             } else {
                 //only when there's no array
                 UserDefaults.standard.set([Date()], forKey: "clockOutLog")
@@ -98,7 +98,7 @@ class InterfaceController: WKInterfaceController {
         
     }
     
-    fileprivate func updateUI() {
+    func updateUI() {
         
         //update the current time
         if clockedIn {
@@ -155,6 +155,7 @@ class InterfaceController: WKInterfaceController {
                 for i in 0..<clockedInLog.count {
                     seconds += Int(clockedOutLog[i].timeIntervalSince(clockedInLog[i]))
                 }
+                
                 return seconds
             }
         }
