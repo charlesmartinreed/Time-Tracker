@@ -49,19 +49,29 @@
             </objects>
             <point key="canvasLocation" x="-134" y="27"/>
         </scene>
-        <!--Interface Controller-->
+        <!--History-->
         <scene sceneID="rtG-lt-98r">
             <objects>
-                <controller id="gHh-J1-cni">
+                <controller identifier="History" id="gHh-J1-cni" customClass="HistoryInterfaceController" customModule="WatchOS_fun_WatchKit_Extension">
                     <items>
                         <table alignment="left" id="Gu2-oo-dP1">
                             <items>
-                                <tableRow id="dfW-rQ-eI5">
-                                    <group key="rootItem" width="1" alignment="left" id="Es0-Wt-KRN"/>
+                                <tableRow identifier="InOutRow" id="dfW-rQ-eI5" customClass="ClockInAndOutRowController" customModule="WatchOS_fun_WatchKit_Extension">
+                                    <group key="rootItem" width="1" alignment="left" id="Es0-Wt-KRN">
+                                        <items>
+                                            <label width="1" height="1" alignment="center" verticalAlignment="center" text="Label" id="bb0-f3-dBU"/>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="label" destination="bb0-f3-dBU" id="FwL-aa-UX0"/>
+                                    </connections>
                                 </tableRow>
                             </items>
                         </table>
                     </items>
+                    <connections>
+                        <outlet property="table" destination="Gu2-oo-dP1" id="UVZ-OL-Taq"/>
+                    </connections>
                 </controller>
             </objects>
             <point key="canvasLocation" x="-256" y="346"/>

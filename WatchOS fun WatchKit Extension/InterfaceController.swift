@@ -27,14 +27,12 @@ class InterfaceController: WKInterfaceController {
         
         //check to see if user is already clocked in
         if UserDefaults.standard.value(forKey: "clockedIn") != nil {
-            print("SOMETHING IS THERE")
             clockedIn = true
             
             if timer == nil {
                 startTimer()
             }
         } else {
-            print("NOTHING IS THERE")
             clockedIn = false
         }
         
@@ -125,7 +123,8 @@ class InterfaceController: WKInterfaceController {
                     currentClockedInString += "\(minutes)m "
                 }
                 
-                currentClockedInString.append("\(seconds)s ")
+                currentClockedInString += "\(seconds)s "
+                //currentClockedInString.append("\(seconds)s ")
                 
                 middleLabel.setText(currentClockedInString)
             }
@@ -183,6 +182,8 @@ class InterfaceController: WKInterfaceController {
     
     //MARK:- Menu actions
     @IBAction func historyTapped() {
+        //this is the WatchOS equivalent of segue
+        pushController(withName: "History", context: nil)
    
     }
     
