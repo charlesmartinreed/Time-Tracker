@@ -54,8 +54,9 @@ class InterfaceController: WKInterfaceController {
     }
     
     fileprivate func clockIn() {
+        
         UserDefaults.standard.set(Date(), forKey: "clockedIn")
-        //UserDefaults.standard.synchronize() - Swift documentation mentinos this method is useless and shouldn't
+        UserDefaults.standard.synchronize()
         startTimer()
     }
     
@@ -85,8 +86,16 @@ class InterfaceController: WKInterfaceController {
             }
             
             UserDefaults.standard.set(nil, forKey: "clockedIn")
-            //UserDefaults.standard.synchronize()
+            UserDefaults.standard.synchronize()
         }
+    }
+    
+    func startTimer() {
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (timer) in
+            // Update various labels
+            self.updateUI()
+        }
+        
     }
     
     fileprivate func updateUI() {
@@ -94,7 +103,7 @@ class InterfaceController: WKInterfaceController {
         //update the current time
         if clockedIn {
             topLabel.setHidden(false)
-            topLabel.setText("Today: 3h 45m")
+            topLabel.setText("Today: \(totalTimeWorkedAsString())")
             
             //middle label
             //get current clock in date
@@ -109,11 +118,11 @@ class InterfaceController: WKInterfaceController {
                 var currentClockedInString = ""
                 
                 if hours != 0 {
-                  currentClockedInString.append("\(hours)h ")
+                  currentClockedInString += "\(hours)h\n "
                 }
                 
                 if minutes != 0 || hours != 0 {
-                    currentClockedInString.append("\(minutes)m ")
+                    currentClockedInString += "\(minutes)m "
                 }
                 
                 currentClockedInString.append("\(seconds)s ")
@@ -127,7 +136,7 @@ class InterfaceController: WKInterfaceController {
             topLabel.setHidden(true)
             
             //middle label
-            middleLabel.setText("Today: \n3h 44m")
+            middleLabel.setText("Today: \n\(totalTimeWorkedAsString())")
             
             clockInOutButton.setTitle("Clock-In")
             clockInOutButton.setBackgroundColor(.green)
@@ -136,13 +145,40 @@ class InterfaceController: WKInterfaceController {
         
     }
     
-    func startTimer() {
-        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { (timer) in
-            // Update various labels
-            self.updateUI()
+    func totalClockedTime() -> Int {
+        //determine the current clocked in time
+        if var clockedInLog = UserDefaults.standard.array(forKey: "clockInLog") as? [Date] {
+            if var clockedOutLog = UserDefaults.standard.array(forKey: "clockOutLog") as? [Date] {
+                var seconds = 0
+                
+                //loop through the arrays
+                for i in 0..<clockedInLog.count {
+                    seconds += Int(clockedOutLog[i].timeIntervalSince(clockedInLog[i]))
+                }
+                return seconds
+            }
+        }
+        //if there's nothing available in UserDefaults yet
+        return 0
+    }
+    
+    func totalTimeWorkedAsString() -> String {
+        var currentClockedInSeconds = 0
+        
+        if let clockedInDate = UserDefaults.standard.value(forKey: "clockedIn") as? Date {
+            currentClockedInSeconds = Int(Date().timeIntervalSince(clockedInDate))
         }
         
+        let totalTimeInterval = currentClockedInSeconds + totalClockedTime()
+        
+        //convert to hours minutes and seconds
+        let totalHours = totalTimeInterval / 3600
+        let totalMinutes = (totalTimeInterval % 3600) / 60
+        
+        return "\(totalHours)h \(totalMinutes)m"
     }
+    
+    
     
     //MARK:- Menu actions
     @IBAction func historyTapped() {
