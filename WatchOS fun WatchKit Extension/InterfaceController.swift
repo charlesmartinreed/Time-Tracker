@@ -11,21 +11,103 @@ import Foundation
 
 
 class InterfaceController: WKInterfaceController {
-
-    override func awake(withContext context: Any?) {
-        super.awake(withContext: context)
-        
-        // Configure interface objects here.
-    }
+    
+    //MARK:- IBOutlets
+    @IBOutlet weak var topLabel: WKInterfaceLabel!
+    @IBOutlet weak var middleLabel: WKInterfaceLabel!
+    @IBOutlet weak var clockInOutButton: WKInterfaceButton!
+    
+    //MARK:- Properties
+    var clockedIn = false
+    var timer: Timer?
     
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
+        
+        //check to see if user is already clocked in
+        if UserDefaults.standard.value(forKey: "clockedIn") != nil {
+            print("SOMETHING IS THERE")
+            clockedIn = true
+            
+            if timer == nil {
+                startTimer()
+            }
+        } else {
+            print("NOTHING IS THERE")
+            clockedIn = false
+        }
+        
+        updateUI()
     }
     
-    override func didDeactivate() {
-        // This method is called when watch view controller is no longer visible
-        super.didDeactivate()
+    //MARK:- IBActions
+    @IBAction func clockInOutButtonTapped() {
+        if clockedIn {
+            clockOut()
+        } else {
+            clockIn()
+        }
+        
+        clockedIn.toggle()
+        updateUI()
     }
-
+    
+    fileprivate func clockIn() {
+        UserDefaults.standard.set(Date(), forKey: "clockedIn")
+        //UserDefaults.standard.synchronize() - Swift documentation mentinos this method is useless and shouldn't
+        startTimer()
+    }
+    
+    fileprivate func clockOut() {
+        //reset the timer
+        timer?.invalidate()
+        timer = nil
+        
+        if let clockedInDate = UserDefaults.standard.value(forKey: "clockedIn") as? Date {
+            //check for the clock-in/clock-out array
+            if var clockInLog = UserDefaults.standard.array(forKey: "clockInLog") as? [Date] {
+                //if there's an array of values
+                clockInLog.insert(clockedInDate, at: 0)
+                UserDefaults.standard.set([clockInLog], forKey: "clockInLog")
+            } else {
+                //only when there's no array
+                UserDefaults.standard.set([clockedInDate], forKey: "clockInLog")
+            }
+        
+            if var clockOutLog = UserDefaults.standard.array(forKey: "clockOutLog") as? [Date] {
+                //if there's an array of values, insert the current time into UserDefaults
+                clockOutLog.insert(Date(), at: 0)
+                UserDefaults.standard.set([clockOutLog], forKey: "clockOutLog")
+            } else {
+                //only when there's no array
+                UserDefaults.standard.set([Date()], forKey: "clockOutLog")
+            }
+            
+            UserDefaults.standard.set(nil, forKey: "clockedIn")
+            //UserDefaults.standard.synchronize()
+        }
+    }
+    
+    fileprivate func updateUI() {
+        
+    }
+    
+    func startTimer() {
+        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { (timer) in
+            // Update various labels
+        }
+        
+    }
+    
+    //MARK:- Menu actions
+    @IBAction func historyTapped() {
+   
+    }
+    
+    @IBAction func resetAllTapped() {
+    
+    }
+    
+    
 }

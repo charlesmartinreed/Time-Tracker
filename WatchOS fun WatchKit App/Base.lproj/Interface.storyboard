@@ -1,15 +1,88 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="11134" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14460.31" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+    <device id="watch38" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="11055"/>
+        <deployment identifier="watchOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14460.16"/>
     </dependencies>
     <scenes>
         <!--Interface Controller-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModuleProvider="target"/>
+                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="WatchOS_fun_WatchKit_App" customModuleProvider="target">
+                    <items>
+                        <button width="1" alignment="left" verticalAlignment="bottom" title="Clock-In" id="zXz-3Z-SPE">
+                            <connections>
+                                <action selector="clockInOutButtonTapped" destination="AgC-eL-Hgc" id="OzP-mn-YfS"/>
+                            </connections>
+                        </button>
+                        <label alignment="right" text="Today: 3h 45m" id="3V1-dj-o8G"/>
+                        <label width="133" alignment="center" verticalAlignment="center" textAlignment="center" numberOfLines="2" minimumScaleFactor="0.80000000000000004" id="dF2-jq-BP8">
+                            <string key="text">Today
+3hr 45m</string>
+                            <fontDescription key="font" type="system" pointSize="37"/>
+                        </label>
+                    </items>
+                    <menu key="menu" id="AdB-UX-VEk">
+                        <items>
+                            <menuItem title="History" icon="info" id="0ij-gc-hBm">
+                                <connections>
+                                    <action selector="historyTapped" destination="AgC-eL-Hgc" id="fHo-pF-tDx"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Reset All" icon="trash" id="6dH-aU-l6q" userLabel="Reset All">
+                                <connections>
+                                    <action selector="resetAllTapped" destination="AgC-eL-Hgc" id="zs5-Gj-wba"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                    <connections>
+                        <outlet property="clockInOutButton" destination="zXz-3Z-SPE" id="HWc-Gz-hwl"/>
+                        <outlet property="middleLabel" destination="dF2-jq-BP8" id="eXo-d3-GcM"/>
+                        <outlet property="topLabel" destination="3V1-dj-o8G" id="64v-cK-YAH"/>
+                    </connections>
+                </controller>
             </objects>
+            <point key="canvasLocation" x="-134" y="27"/>
+        </scene>
+        <!--Interface Controller-->
+        <scene sceneID="rtG-lt-98r">
+            <objects>
+                <controller id="gHh-J1-cni">
+                    <items>
+                        <table alignment="left" id="Gu2-oo-dP1">
+                            <items>
+                                <tableRow id="dfW-rQ-eI5">
+                                    <group key="rootItem" width="1" alignment="left" id="Es0-Wt-KRN"/>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="-256" y="346"/>
+        </scene>
+        <!--Interface Controller-->
+        <scene sceneID="BTP-NC-zaS">
+            <objects>
+                <controller id="Tvr-2e-rFW">
+                    <items>
+                        <label alignment="left" text="Clock-In:" id="VSo-iT-WBN"/>
+                        <label alignment="left" text="Aug 5th 4:32PM" minimumScaleFactor="0.69999999999999996" id="Dd0-P7-5a3">
+                            <fontDescription key="font" style="UICTFontTextStyleTitle2"/>
+                        </label>
+                        <label alignment="left" text="Clock-Out:" id="BuG-l9-Zwy"/>
+                        <label alignment="left" text="Aug 5th 4:48PM" minimumScaleFactor="0.59999999999999998" id="zKO-1p-uvL">
+                            <fontDescription key="font" style="UICTFontTextStyleTitle2"/>
+                        </label>
+                    </items>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="47" y="346"/>
         </scene>
     </scenes>
 </document>
