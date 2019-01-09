@@ -20,13 +20,6 @@ class HistoryInterfaceController: WKInterfaceController {
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         
-       
-        /*
-         UserDefaults.standard.set(nil, forKey: "clockedIn")
-         UserDefaults.standard.set(nil, forKey: "clockInLog")
-         UserDefaults.standard.set(nil, forKey: "clockOutLog")
-         */
-        
         //filling out the tableView
         if let clockIns = UserDefaults.standard.array(forKey: "clockInLog") as? [Date] {
             self.clockIns = clockIns
@@ -51,6 +44,12 @@ class HistoryInterfaceController: WKInterfaceController {
         }
     }
     
+    override func table(_ table: WKInterfaceTable, didSelectRowAt rowIndex: Int) {
+        //push over to the detail scrreen for each individual log, passing the clocked in and clocked out times for the tapped row as the "
+        pushController(withName: "timeDetails", context: ["clockedIn": clockIns[rowIndex], "clockedOut": clockOuts[rowIndex]])
+    }
+    
+    //MARK:- Formatting time interval for layout in table
     func formatTime(clockOut: Date, clockIn: Date) -> String {
             let timeInterval = Int(clockOut.timeIntervalSince(clockIn))
             var timeString = ""

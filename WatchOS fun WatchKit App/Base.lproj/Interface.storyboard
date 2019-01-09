@@ -76,10 +76,10 @@
             </objects>
             <point key="canvasLocation" x="-256" y="346"/>
         </scene>
-        <!--Interface Controller-->
+        <!--timeDetails-->
         <scene sceneID="BTP-NC-zaS">
             <objects>
-                <controller id="Tvr-2e-rFW">
+                <controller identifier="timeDetails" id="Tvr-2e-rFW" customClass="DetailInterfaceController" customModule="WatchOS_fun_WatchKit_Extension">
                     <items>
                         <label alignment="left" text="Clock-In:" id="VSo-iT-WBN"/>
                         <label alignment="left" text="Aug 5th 4:32PM" minimumScaleFactor="0.69999999999999996" id="Dd0-P7-5a3">
@@ -90,6 +90,10 @@
                             <fontDescription key="font" style="UICTFontTextStyleTitle2"/>
                         </label>
                     </items>
+                    <connections>
+                        <outlet property="clockInLabel" destination="Dd0-P7-5a3" id="5yc-Hl-2WC"/>
+                        <outlet property="clockOutLabel" destination="zKO-1p-uvL" id="N9F-jC-Jcv"/>
+                    </connections>
                 </controller>
             </objects>
             <point key="canvasLocation" x="47" y="346"/>

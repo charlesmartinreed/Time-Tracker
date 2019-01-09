@@ -21,6 +21,7 @@
 		8C1F7C6921E566770076D6DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C1F7C6821E566770076D6DC /* Assets.xcassets */; };
 		8C1F7C7921E5AFF20076D6DC /* HistoryInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1F7C7821E5AFF10076D6DC /* HistoryInterfaceController.swift */; };
 		8C1F7C7B21E5B0460076D6DC /* ClockInAndOutRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1F7C7A21E5B0460076D6DC /* ClockInAndOutRowController.swift */; };
+		8C1F7C7D21E5BE7C0076D6DC /* DetailInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1F7C7C21E5BE7C0076D6DC /* DetailInterfaceController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +85,7 @@
 		8C1F7C6A21E566770076D6DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8C1F7C7821E5AFF10076D6DC /* HistoryInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryInterfaceController.swift; sourceTree = "<group>"; };
 		8C1F7C7A21E5B0460076D6DC /* ClockInAndOutRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockInAndOutRowController.swift; sourceTree = "<group>"; };
+		8C1F7C7C21E5BE7C0076D6DC /* DetailInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInterfaceController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +155,7 @@
 				8C1F7C6421E566770076D6DC /* InterfaceController.swift */,
 				8C1F7C7821E5AFF10076D6DC /* HistoryInterfaceController.swift */,
 				8C1F7C7A21E5B0460076D6DC /* ClockInAndOutRowController.swift */,
+				8C1F7C7C21E5BE7C0076D6DC /* DetailInterfaceController.swift */,
 				8C1F7C6621E566770076D6DC /* ExtensionDelegate.swift */,
 				8C1F7C6821E566770076D6DC /* Assets.xcassets */,
 				8C1F7C6A21E566770076D6DC /* Info.plist */,
@@ -305,6 +308,7 @@
 				8C1F7C6521E566770076D6DC /* InterfaceController.swift in Sources */,
 				8C1F7C7B21E5B0460076D6DC /* ClockInAndOutRowController.swift in Sources */,
 				8C1F7C7921E5AFF20076D6DC /* HistoryInterfaceController.swift in Sources */,
+				8C1F7C7D21E5BE7C0076D6DC /* DetailInterfaceController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
